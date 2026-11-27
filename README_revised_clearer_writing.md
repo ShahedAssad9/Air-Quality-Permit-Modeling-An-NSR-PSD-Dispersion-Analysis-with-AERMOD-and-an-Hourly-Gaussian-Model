@@ -619,24 +619,6 @@ The SO₂ emissions would therefore need to be reduced by about 92% to meet this
 
 Part A does not identify this problem because it assumes flat terrain and does not include building downwash. Those assumptions omit the main factor controlling dispersion at this site. The comparison shows why a simplified Gaussian model is useful for learning and preliminary assessment, but a site with complex nearby terrain requires a regulatory model such as AERMOD that can account for terrain effects.
 
-## What I Corrected from the First Version
-
-The original version used the general modeling workflow and the correct averaging-time forms for SO₂ and NO₂. However, its reported results were not produced by AERMOD, and several input files were not compatible with the current EPA programs. The main changes are summarized below.
-
-| Item | First version | This version |
-| :--- | :--- | :--- |
-| Figures | computed with one Gaussian formula (class B for every hour, plume rise capped at 45 m), not with AERMOD or hourly weather | hourly model over 5 years; every design value in its correct form |
-| Met file | `APEX_2018_2022.SFC`: synthetic, one year only, no relative humidity column, constant pressure and cloud | documented synthetic 5-year file in AERMET format (Part A); real data through AERMET in Part B |
-| Met period and data | 2018–2022; FSL upper air (no longer available); ISHD surface data (retired by NCEI) | 2021–2025; IGRA upper air; GHCNh surface data (AERMET 26135) |
-| AERMET | three stages with the obsolete `MERGE` stage; no `ADJ_U*`, `THRESH_1MIN`, `SUB_CC`, `SUB_TT`, `UASELECT`; upper-air station without the required elevation | two stages with the recommended options |
-| AERSURFACE | `ARID_NO`, legacy `AP` flag, NLCD 2011, one moisture case | `NONARID`, `VARYZ0`/`LOWZ0`, NLCD 2021, three moisture runs assigned to years |
-| AERMINUTE | wrong `IFWGROUP` syntax, partial file list | correct syntax, every available month (57 of 60) |
-| Receptors | overlapping grids, no fenceline, ±10 km | fenceline, nested grids and polar rings to 50 km, written by code for AERMAP and Part A alike |
-| AERMOD | `SITEDATA` without on-site data; `NO2STACK` on the SO pathway; PVMRM with an unjustified in-stack ratio of 0.10; no PM₂.₅ runs; increments from a multi-year run | removed; ARM2 (Tier 2); PM₂.₅ runs; one run per year for H1H/H2H; optional OLM with the correct keywords |
-| AERSCREEN | hand-written restart file that AERSCREEN cannot read | the prompt answers (AERSCREEN writes its own `aerscreen.inp`) |
-| Limits | PM₂.₅ annual NAAQS 12 and SIL 0.3 µg/m³; Class I and III increments compared at near-field receptors | current values; Class II increments at the receptors, Class I through the Federal Land Managers |
-| README | mentioned a Martins Creek benchmark and a ±50% AERSURFACE sensitivity that the code did not contain | describes only what the code does |
-
 ## How to Run
 
 ### Part A only (any computer with Python)
