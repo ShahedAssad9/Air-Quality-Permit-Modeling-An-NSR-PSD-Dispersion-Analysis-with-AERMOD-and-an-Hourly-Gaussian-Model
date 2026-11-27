@@ -641,57 +641,6 @@ The EPA programs run on Windows. Double-click these files in order, and wait unt
 | D | `D_run_test_runs.bat` (optional) | the 10 test runs with downwash or terrain switched off, and the GEP stack | about 15 minutes |
 | E | `E_make_figures.bat` | Python: concept illustrations, Part A, the AERMOD tables, the comparison and every figure | about 3 minutes |
 
-Every step writes a log in `logs/`. Step B can run single programs: `B_run_preprocessors.bat B4` reruns only AERMET (B1 data preparation, B2 AERSURFACE, B3 AERMINUTE, B4 AERMET, B5 AERMAP, B6 BPIPPRM). All EPA input files are written by `make_epa_inputs.py` from `project_setup.py`; after changing the project (for example the emission rates), run `python make_epa_inputs.py` in `08_Python_Analysis` and then steps B to E again.
-
-### Scripts
-
-| Script | What it does |
-| :--- | :--- |
-| `08_Python_Analysis/project_setup.py` | every input of the case study: source, building, fence, receptors, emissions, stations, standards, background |
-| `08_Python_Analysis/make_demo_met.py` | writes the synthetic 2021–2025 met files (AERMET format) |
-| `08_Python_Analysis/hourly_gaussian_model.py` | the Part A model (Steps 1–7), including the 3D concentration used in the plume figures |
-| `08_Python_Analysis/run_part_a.py` | runs Part A, builds the design values and the regulatory tests, writes `part_a_results/` |
-| `08_Python_Analysis/part_a_figures.py` | the result figures (Part A, AERMOD maps, comparison maps) |
-| `08_Python_Analysis/make_illustrations.py` | the concept illustrations |
-| `08_Python_Analysis/make_epa_inputs.py` | writes every Part B input file (AERSURFACE to AERMOD, including the test runs) |
-| `08_Python_Analysis/extract_bpip_lines.py` | turns the BPIPPRM output into an AERMOD include file |
-| `08_Python_Analysis/aermod_results.py` | AERMOD design values and regulatory tests (`part_b_results/`) |
-| `08_Python_Analysis/compare_with_aermod.py` | Part A against AERMOD, the test runs, the distance graphs and the maps of all set-ups |
-| `tools/download_data.ps1` | step A |
-| `tools/prepare_data.py`, `tools/run_preprocessors.ps1` | step B |
-| `tools/run_aermod.ps1` | steps C and D (several AERMOD runs at a time, below-normal priority) |
-
-### Folder Structure
-
-```
-AERMOD-NSR-PSD-Permit-Modeling/
-├── README.md                    this article
-├── RESULTS_AERMOD.md            Part B report: data checks, results, comparison, fixes
-├── requirements.txt             Python packages
-├── A_download_data.bat          step A: EPA programs and data
-├── B_run_preprocessors.bat      step B: AERSURFACE, AERMINUTE, AERMET, AERMAP, BPIPPRM
-├── C_run_aermod.bat             step C: the 19 AERMOD runs
-├── D_run_test_runs.bat          step D: the 10 test runs (optional)
-├── E_make_figures.bat           step E: tables and figures
-├── 01_AERSURFACE/               3 control files (average, wet, dry) and outputs
-├── 02_AERMINUTE/                aerminute.inp and the hourly 1-minute winds summary
-├── 03_AERMET/                   stage 1 and stage 2 inputs, reports, KABE_2021_2025.SFC/.PFL
-├── 04_AERMAP/                   aermap.inp, 3,225 receptors with elevations
-├── 05_BPIPPRM/                  building input, output and the AERMOD include file
-├── 06_AERMOD/                   naaqs_sil/, per_year/, optional/, diagnostic/ (inputs and reports)
-│   └── output/                  PLOTFILEs and summary files of every run
-├── 07_AERSCREEN/                optional screening run: the prompt answers
-├── 08_Python_Analysis/          Part A model and demo met, results, Part B tables and comparison
-├── data/README.md               the data step A downloads (the data are not on GitHub)
-├── images/
-│   ├── concepts/                concept illustrations
-│   ├── part_a/                  Part A results (synthetic weather), including the 3D plumes
-│   ├── aermod/                  AERMOD design-value maps
-│   └── comparison/              Part A against AERMOD, distance graphs, maps/ of all set-ups
-└── tools/                       the scripts behind steps A to D
-```
-
-`Bin/` (EPA programs), `data/` (downloaded data), `logs/` and a few large intermediate files are not on GitHub (see `.gitignore`); steps A and B create them again.
 
 ## Limitations and Further Work
 
