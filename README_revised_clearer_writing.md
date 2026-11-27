@@ -11,7 +11,6 @@ The methods are based on EPA's *Guideline on Air Quality Models* (40 CFR Part 51
 
 ## Key Findings
 
-* **The proposed facility does not meet the air-quality limits at this location.** The AERMOD results exceed the 1-hour SO₂ and NO₂ NAAQS, both PM₂.₅ NAAQS, both secondary SO₂ standards, and four Class II increments. Meeting the 1-hour SO₂ NAAQS would require an SO₂ reduction of about 92%, or a different site.
 * **Nearby terrain drives the high concentrations.** A ridge lies 0.4–0.6 km south-east of the stack. Its surface is 100–130 m above the stack base, close to the plume's height. During stable conditions, AERMOD predicts that much of the plume reaches the hillside before it has dispersed. This increases the design values by a factor of 20–40.
 * **The difference between the models is mainly their treatment of terrain.** When terrain is removed from AERMOD, its results are generally within a factor of two of the Part A model. Building downwash has a noticeable effect only within about 0.4 km of the stack.
 
